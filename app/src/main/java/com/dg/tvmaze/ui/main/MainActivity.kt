@@ -3,6 +3,7 @@ package com.dg.tvmaze.ui.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.dg.tvmaze.BuildConfig
 import com.dg.tvmaze.R
 import com.dg.tvmaze.databinding.ActivityMainBinding
 import com.dg.tvmaze.ui.favorites.FavoritesFragment
@@ -12,7 +13,7 @@ import com.dg.tvmaze.ui.list.newInstance
 import com.dg.tvmaze.ui.search.SearchFragment
 import com.dg.tvmaze.ui.search.newInstance
 
-fun log(message: String) = Log.d("TvMaze", message)
+fun log(message: String) = Log.d(BuildConfig.APPLICATION_ID, message)
 
 class MainActivity : AppCompatActivity() {
 

@@ -1,6 +1,7 @@
 package com.dg.tvmaze
 
 import android.support.multidex.MultiDexApplication
+import com.dg.tvmaze.di.networkModule
 import com.dg.tvmaze.di.repositoriesModule
 import com.dg.tvmaze.di.useCasesModule
 import com.dg.tvmaze.di.viewModelsModule
@@ -17,6 +18,7 @@ class TvMazeApplication : MultiDexApplication() {
             androidLogger()
             androidContext(this@TvMazeApplication)
             modules(
+                networkModule,
                 repositoriesModule,
                 useCasesModule,
                 viewModelsModule

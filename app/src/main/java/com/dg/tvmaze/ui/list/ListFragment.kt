@@ -37,7 +37,7 @@ class ListFragment : BottomNavigationFragment(R.layout.fragment_list) {
         }
 
         viewModel.show.observe(viewLifecycleOwner) {
-            binding.idTextView.text = it.getOrNull()?.name?: "Error"
+            binding.idTextView.text = it.getOrNull()?.name?: it.exceptionOrNull()?.message?: "Unknown"
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
