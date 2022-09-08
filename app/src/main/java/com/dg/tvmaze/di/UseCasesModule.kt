@@ -4,5 +4,5 @@ import com.dg.tvmaze.usecases.RetrieveShowUseCase
 import org.koin.dsl.module
 
 val useCasesModule = module {
-    factory { RetrieveShowUseCase() }
+    factory { RetrieveShowUseCase(showRepository = get()) }
 }
