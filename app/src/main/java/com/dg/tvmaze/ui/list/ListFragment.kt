@@ -3,12 +3,18 @@ package com.dg.tvmaze.ui.list
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.commit
+import androidx.lifecycle.lifecycleScope
 import com.dg.tvmaze.R
 import com.dg.tvmaze.databinding.FragmentListBinding
 import com.dg.tvmaze.ui.main.BottomNavigationFragment
 import com.dg.tvmaze.ui.series.SeriesFragment
 import com.dg.tvmaze.ui.series.newInstance
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
+import org.koin.androidx.scope.fragmentScope
 
 class ListFragment : BottomNavigationFragment(R.layout.fragment_list) {
 
@@ -29,11 +35,14 @@ class ListFragment : BottomNavigationFragment(R.layout.fragment_list) {
                 addToBackStack(null)
             }
         }
-    }
 
-    override fun onStart() {
-        super.onStart()
-        viewModel.name.observe(this) { binding.idTextView.text = it }
+        viewModel.show.observe(viewLifecycleOwner) {
+            binding.idTextView.text = it.getOrNull()?.name?: "Error"
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.getShow(4)
+        }
     }
 
     override fun onDestroyView() {
