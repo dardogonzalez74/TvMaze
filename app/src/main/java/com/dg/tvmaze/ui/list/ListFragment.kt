@@ -8,12 +8,14 @@ import com.dg.tvmaze.databinding.FragmentListBinding
 import com.dg.tvmaze.ui.main.BottomNavigationFragment
 import com.dg.tvmaze.ui.series.SeriesFragment
 import com.dg.tvmaze.ui.series.newInstance
+import org.koin.android.ext.android.inject
 
 class ListFragment : BottomNavigationFragment(R.layout.fragment_list) {
 
     companion object;
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: ListViewModel by inject()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,6 +29,11 @@ class ListFragment : BottomNavigationFragment(R.layout.fragment_list) {
                 addToBackStack(null)
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.name.observe(this) { binding.idTextView.text = it }
     }
 
     override fun onDestroyView() {
