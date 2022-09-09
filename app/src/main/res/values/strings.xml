@@ -7,4 +7,15 @@
     <string name="loading_shows">Loading series…</string>
     <string name="loading_shows_error">An error has occurred</string>
     <string name="loading_shows_retry">Tap here to retry</string>
+    <string name="genre">Genre</string>
+    <string name="not_available">N/A</string>
+    <string name="language">Language</string>
+    <string name="rating">Rating</string>
+    <string name="days">Days</string>
+    <string name="time">Time</string>
+    <string name="duration">Duration</string>
+    <string name="duration_info">%1$s min.</string>
+    <string name="premiered">Premiered</string>
+    <string name="ended">Ended</string>
+
 </resources>

@@ -16,6 +16,7 @@ class ShowDetailFragment : Fragment(R.layout.fragment_show_details) {
     companion object;
     private var _binding: FragmentShowDetailsBinding? = null
     private val binding get() = _binding!!
+    private val unknown by lazy { requireContext().getString(R.string.not_available) }
 
     private lateinit var show: Show
 
@@ -39,6 +40,15 @@ class ShowDetailFragment : Fragment(R.layout.fragment_show_details) {
     private fun showDetails() {
         binding.nameTextView.text = show.name
         binding.summaryTextView.text = Html.fromHtml(show.summary, Html.FROM_HTML_MODE_COMPACT)
+        binding.genreTextView.text = show.genres?.joinToString(", ")?: unknown
+        binding.languageTextView.text = show.language?: unknown
+        binding.ratingTextView.text = "${show.rating?: unknown}"
+        binding.daysTextView.text = show.days?.joinToString(", ")?: unknown
+        binding.timeTextView.text = show.time?: unknown
+        binding.durationTextView.text = getString(R.string.duration_info, show.runtime?: unknown)
+        binding.premieredTextView.text = show.premiered?: unknown
+        binding.endedTextView.text = show.ended?: "-"
+
         Glide.with(requireContext())
             //TODO just for testing, remove this
             .setDefaultRequestOptions(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
@@ -51,7 +61,6 @@ class ShowDetailFragment : Fragment(R.layout.fragment_show_details) {
             parentFragmentManager.popBackStack()
         }
     }
-
 }
 
 
