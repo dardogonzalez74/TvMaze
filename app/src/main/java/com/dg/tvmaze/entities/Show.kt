@@ -1,7 +1,6 @@
 package com.dg.tvmaze.entities
 
 import android.os.Parcelable
-import com.dg.tvmaze.network.entities.ShowsEndpointModel
 import kotlinx.parcelize.Parcelize
 
 @Parcelize

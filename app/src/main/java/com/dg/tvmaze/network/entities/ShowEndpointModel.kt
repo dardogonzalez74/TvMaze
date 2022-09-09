@@ -2,7 +2,7 @@ package com.dg.tvmaze.network.entities
 
 import com.dg.tvmaze.entities.Show
 
-data class ShowsEndpointModel(
+data class ShowEndpointModel(
     val id: Int,
     val name: String,
     val summary: String? = null,
@@ -39,7 +39,7 @@ data class ShowsEndpointModel(
 }
 
 
-fun ShowsEndpointModel.toAppModel() = Show(
+fun ShowEndpointModel.toAppModel() = Show(
     id = id,
     name = name,
     thumbnail = image?.medium,

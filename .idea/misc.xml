@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable/rounded_corner.xml" value="0.114" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/activity_main_custom_bar.xml" value="0.2552083333333333" />
+        <entry key="app/src/main/res/layout/episode_view.xml" value="0.10520833333333333" />
         <entry key="app/src/main/res/layout/fragment_episode.xml" value="0.2552083333333333" />
         <entry key="app/src/main/res/layout/fragment_favorites.xml" value="0.2552083333333333" />
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.25625" />
@@ -15,6 +16,7 @@
         <entry key="app/src/main/res/layout/fragment_series.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/fragment_show_details.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/network_state_item.xml" value="0.2552083333333333" />
+        <entry key="app/src/main/res/layout/season_view.xml" value="0.2552083333333333" />
         <entry key="app/src/main/res/layout/show_item.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/show_load_state_item.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/shows_item.xml" value="0.2703125" />
