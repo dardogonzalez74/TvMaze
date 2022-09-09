@@ -21,5 +21,6 @@
     <string name="season_number">Season %d</string>
     <string name="details">Details</string>
     <string name="episodes">Episodes</string>
+    <string name="episode_number">Episode %d</string>
 
 </resources>

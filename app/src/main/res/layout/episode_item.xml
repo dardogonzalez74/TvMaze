@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/seasonSeparatorView"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/seasonCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/gray_500"
+        card_view:cardElevation="10dp"
+        card_view:cardCornerRadius="2dp">
+
+        <TextView
+            android:id="@+id/seasonTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:maxLines="1"
+            android:textSize="20sp"
+            android:padding="10dp"
+            android:ellipsize="end"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            tools:text="Season number" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        card_view:cardElevation="10dp"
+        app:cardBackgroundColor="@color/gray_300"
+        card_view:cardCornerRadius="1dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/thumbnailImageView"
+                android:layout_width="80dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="8dp"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintEnd_toStartOf="@id/episodeTextView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_image_loading" />
+
+            <TextView
+                android:id="@+id/episodeTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:maxLines="1"
+                android:textSize="13sp"
+                android:ellipsize="end"
+                android:textStyle="bold"
+                android:textColor="@color/darker_white"
+                card_view:layout_constraintStart_toEndOf="@id/thumbnailImageView"
+                app:layout_constraintTop_toTopOf="@id/thumbnailImageView"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Episode number" />
+
+            <TextView
+                android:id="@+id/nameTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:maxLines="1"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:ellipsize="end"
+                android:textColor="@color/white"
+                app:layout_constraintStart_toStartOf="@id/episodeTextView"
+                app:layout_constraintTop_toBottomOf="@id/episodeTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Name" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray_500"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

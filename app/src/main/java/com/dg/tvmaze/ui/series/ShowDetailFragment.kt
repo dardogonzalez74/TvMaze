@@ -13,7 +13,6 @@ import com.dg.tvmaze.databinding.FragmentShowDetailsBinding
 import com.dg.tvmaze.entities.Episode
 import com.dg.tvmaze.entities.Show
 import com.dg.tvmaze.ui.adapters.EpisodesAdapter
-import com.dg.tvmaze.ui.customviews.SeasonView
 import com.google.android.material.tabs.TabLayout
 import org.koin.android.ext.android.inject
 
