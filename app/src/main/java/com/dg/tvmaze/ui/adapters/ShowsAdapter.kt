@@ -7,6 +7,12 @@ import com.dg.tvmaze.entities.Show
 
 class ShowsAdapter : PagingDataAdapter<Show, ShowViewHolder>(COMPARATOR) {
 
+    private var onShowClicked: ((Show) -> Unit)? = null
+
+    fun setOnShowClickedListener(onShowClicked: ((Show) -> Unit)) {
+        this.onShowClicked = onShowClicked
+    }
+
     companion object {
         val COMPARATOR = object : DiffUtil.ItemCallback<Show>() {
             override fun areContentsTheSame(oldItem: Show, newItem: Show) = oldItem == newItem
@@ -24,7 +30,7 @@ class ShowsAdapter : PagingDataAdapter<Show, ShowViewHolder>(COMPARATOR) {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowViewHolder {
-        return ShowViewHolder.create(parent)
+        return ShowViewHolder.create(parent, onShowClicked)
     }
 
 }

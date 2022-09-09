@@ -12,11 +12,17 @@ import com.dg.tvmaze.R
 import com.dg.tvmaze.databinding.ShowItemBinding
 import com.dg.tvmaze.entities.Show
 
-class ShowViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class ShowViewHolder(
+    view: View,
+    private val onClicked: ((Show) -> Unit)? = null
+) : RecyclerView.ViewHolder(view) {
 
     companion object {
-        fun create(parent: ViewGroup) =
-            ShowViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.show_item, parent, false))
+        fun create(parent: ViewGroup, onClicked: ((Show) -> Unit)? = null) =
+            ShowViewHolder(
+                view = LayoutInflater.from(parent.context).inflate(R.layout.show_item, parent, false),
+                onClicked = onClicked
+            )
     }
 
     private val binding = ShowItemBinding.bind(itemView)
@@ -24,6 +30,7 @@ class ShowViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     fun bind(show: Show?) {
         show
             ?.let {
+                itemView.setOnClickListener { onClicked?.invoke(show) }
                 binding.titleTextView.text = it.name
                 binding.summaryTextView.text = Html.fromHtml(it.summary,Html.FROM_HTML_MODE_COMPACT)
                 binding.propertyOfTextView.text = it.propertyOf
@@ -38,6 +45,7 @@ class ShowViewHolder(view: View) : RecyclerView.ViewHolder(view) {
                     .into(binding.thumbnailImageView);
             }
             ?:run {
+                itemView.setOnClickListener {  }
                 binding.titleTextView.text = ""
                 binding.propertyOfTextView.text = ""
                 binding.summaryTextView.text = ""

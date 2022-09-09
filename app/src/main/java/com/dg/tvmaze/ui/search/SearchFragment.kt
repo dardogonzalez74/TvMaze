@@ -6,7 +6,7 @@ import androidx.fragment.app.commit
 import com.dg.tvmaze.R
 import com.dg.tvmaze.databinding.FragmentSearchBinding
 import com.dg.tvmaze.ui.main.BottomNavigationFragment
-import com.dg.tvmaze.ui.series.SeriesFragment
+import com.dg.tvmaze.ui.series.ShowDetailFragment
 import com.dg.tvmaze.ui.series.newInstance
 
 
@@ -21,12 +21,12 @@ class SearchFragment : BottomNavigationFragment(R.layout.fragment_search) {
         _binding = FragmentSearchBinding.bind(view)
 
         binding.goToSeriesButton.setOnClickListener {
-            val seriesFragment = SeriesFragment.newInstance("From Search")
-            childFragmentManager.commit {
-                add(R.id.fragmentContainerView, seriesFragment)
-                setReorderingAllowed(true)
-                addToBackStack(null)
-            }
+//            val showDetailFragment = ShowDetailFragment.newInstance("From Search")
+//            childFragmentManager.commit {
+//                add(R.id.fragmentContainerView, showDetailFragment)
+//                setReorderingAllowed(true)
+//                addToBackStack(null)
+//            }
         }
     }
 

@@ -3,14 +3,17 @@ package com.dg.tvmaze.ui.list
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import com.dg.tvmaze.R
 import com.dg.tvmaze.databinding.FragmentListBinding
+import com.dg.tvmaze.entities.Show
 import com.dg.tvmaze.ui.adapters.ShowsAdapter
 import com.dg.tvmaze.ui.adapters.ShowsLoadStateAdapter
 import com.dg.tvmaze.ui.main.BottomNavigationFragment
-import com.dg.tvmaze.ui.main.log
+import com.dg.tvmaze.ui.series.ShowDetailFragment
+import com.dg.tvmaze.ui.series.newInstance
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.android.ext.android.inject
 
@@ -30,10 +33,8 @@ class ListFragment : BottomNavigationFragment(R.layout.fragment_list) {
 
     private fun setupAdapter() {
         makeVisible(binding.loadingLinearLayout)
-
-        binding.retryTextView.setOnClickListener {
-            adapter.retry()
-        }
+        adapter.setOnShowClickedListener { showDetails(it) }
+        binding.retryTextView.setOnClickListener { adapter.retry() }
 
         binding.showsRecyclerView.adapter =
             adapter.withLoadStateFooter(ShowsLoadStateAdapter(adapter))
@@ -43,12 +44,20 @@ class ListFragment : BottomNavigationFragment(R.layout.fragment_list) {
         }
 
         adapter.addLoadStateListener { loadState ->
-            log("running ${loadState.refresh}")
             when (loadState.refresh) {
                 is LoadState.NotLoading -> makeVisible(binding.showsRecyclerView)
                 is LoadState.Loading -> makeVisible(binding.loadingLinearLayout)
                 is LoadState.Error -> makeVisible(binding.errorLinearLayout)
             }
+        }
+    }
+
+    private fun showDetails(show: Show) {
+        val showDetailFragment = ShowDetailFragment.newInstance(show)
+        childFragmentManager.commit {
+            add(R.id.fragmentContainerView, showDetailFragment)
+            setReorderingAllowed(true)
+            addToBackStack(null)
         }
     }
 

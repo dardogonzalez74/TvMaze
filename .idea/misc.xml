@@ -13,6 +13,7 @@
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/fragment_series.xml" value="0.25625" />
+        <entry key="app/src/main/res/layout/fragment_show_details.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/network_state_item.xml" value="0.2552083333333333" />
         <entry key="app/src/main/res/layout/show_item.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/show_load_state_item.xml" value="0.2703125" />
