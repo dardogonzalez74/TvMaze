@@ -4,4 +4,7 @@
     <string name="menu_search">Search</string>
     <string name="menu_favorite">Favorites</string>
     <string name="retry">Retry</string>
+    <string name="loading_shows">Loading series…</string>
+    <string name="loading_shows_error">An error has occurred</string>
+    <string name="loading_shows_retry">Tap here to retry</string>
 </resources>

@@ -21,10 +21,7 @@ class ShowsLoadStateViewHolder(
     }
 
     fun bindTo(loadState: LoadState) {
-        binding.errorTextView.text = (loadState as? LoadState.Error)?.error?.message
-
         binding.progressBar.isVisible = loadState is LoadState.Loading
         binding.retryButton.isVisible = loadState is LoadState.Error
-        binding.errorTextView.isVisible = !(loadState as? LoadState.Error)?.error?.message.isNullOrBlank()
     }
 }

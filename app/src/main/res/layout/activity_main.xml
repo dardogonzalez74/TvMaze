@@ -19,8 +19,9 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="45dp"
         android:layout_gravity="start"
+        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
         app:labelVisibilityMode="unlabeled"
         app:menu="@menu/bottom_navigation_items"
         app:layout_constraintEnd_toEndOf="parent"
