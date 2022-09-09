@@ -2,19 +2,15 @@ package com.dg.tvmaze.ui.list
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import com.dg.tvmaze.R
 import com.dg.tvmaze.databinding.FragmentListBinding
+import com.dg.tvmaze.ui.adapters.ShowsAdapter
+import com.dg.tvmaze.ui.adapters.ShowsLoadStateAdapter
 import com.dg.tvmaze.ui.main.BottomNavigationFragment
-import com.dg.tvmaze.ui.series.SeriesFragment
-import com.dg.tvmaze.ui.series.newInstance
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.collectLatest
 import org.koin.android.ext.android.inject
-import org.koin.androidx.scope.fragmentScope
 
 class ListFragment : BottomNavigationFragment(R.layout.fragment_list) {
 
@@ -22,26 +18,20 @@ class ListFragment : BottomNavigationFragment(R.layout.fragment_list) {
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
     private val viewModel: ListViewModel by inject()
+    private val adapter by lazy { ShowsAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentListBinding.bind(view)
+        setupAdapter()
+    }
 
-        binding.goToSeriesButton.setOnClickListener {
-            val seriesFragment = SeriesFragment.newInstance("From List")
-            childFragmentManager.commit {
-                add(R.id.fragmentContainerView, seriesFragment)
-                setReorderingAllowed(true)
-                addToBackStack(null)
-            }
-        }
+    private fun setupAdapter() {
+        binding.showsRecyclerView.adapter =
+            adapter.withLoadStateFooter(ShowsLoadStateAdapter(adapter))
 
-        viewModel.show.observe(viewLifecycleOwner) {
-            binding.idTextView.text = it.getOrNull()?.name?: it.exceptionOrNull()?.message?: "Unknown"
-        }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getShow(4)
+        lifecycleScope.launchWhenCreated {
+            viewModel.shows.collectLatest { adapter.submitData(it) }
         }
     }
 

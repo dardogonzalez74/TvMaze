@@ -7,4 +7,7 @@ data class ShowsEndpointModel(
     val name: String
 )
 
-fun ShowsEndpointModel.toAppModel() = Show(id, name)
+fun ShowsEndpointModel.toAppModel() = Show(
+    id = id,
+    name = name
+)
