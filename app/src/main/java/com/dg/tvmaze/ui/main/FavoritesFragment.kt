@@ -5,6 +5,7 @@ import android.view.View
 import androidx.core.view.isVisible
 import com.dg.tvmaze.R
 import com.dg.tvmaze.databinding.FragmentFavoritesBinding
+import com.dg.tvmaze.entities.Show
 import com.dg.tvmaze.ui.adapters.ShowsAdapter
 import com.dg.tvmaze.ui.adapters.ShowsPagingAdapter
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -31,7 +32,7 @@ class FavoritesFragment : BottomNavigationFragment(R.layout.fragment_favorites) 
 
     private fun setListeners() {
         viewModel.favoritesLiveData.observe(viewLifecycleOwner) {
-            adapter.shows = it
+            adapter.shows = it.sortedBy { it.name }
             binding.favoritesRecyclerView.isVisible = it.isNotEmpty()
             binding.emptyLinearLayout.isVisible = it.isEmpty()
         }
@@ -39,9 +40,12 @@ class FavoritesFragment : BottomNavigationFragment(R.layout.fragment_favorites) 
 
     private fun initView() {
         binding.favoritesRecyclerView.adapter = adapter
+        adapter.onRemoveClicked = ::removeFavorite
     }
 
-
+    private fun removeFavorite(show: Show) {
+        viewModel.removeFavorite(show)
+    }
 }
 
 fun FavoritesFragment.Companion.newInstance() = FavoritesFragment()

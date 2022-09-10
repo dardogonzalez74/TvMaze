@@ -40,6 +40,13 @@ class MainViewModel(
         _favoritesLiveData.value = favorites
     }
 
+    fun removeFavorite(show: Show) {
+        favorites.find { it.id == show.id }?.run {
+            favorites.remove(show)
+            _favoritesLiveData.value = favorites
+        }
+    }
+
     val showsFlow: Flow<PagingData<Show>> =
         Pager(
             config = PagingConfig(
@@ -61,4 +68,5 @@ class MainViewModel(
             if(isActive) _searchLiveData.value = shows
         }
     }
+
 }

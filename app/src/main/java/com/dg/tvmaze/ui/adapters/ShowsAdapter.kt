@@ -9,6 +9,7 @@ class ShowsAdapter : RecyclerView.Adapter<ShowViewHolder>() {
 
     var onShowClicked: ((Show) -> Unit)? = null
     var onFavoriteClicked: ((Show) -> Unit)? = null
+    var onRemoveClicked: ((Show) -> Unit)? = null
     var favorites: List<Show> = listOf()
         set(value) {
             field = value
@@ -46,7 +47,7 @@ class ShowsAdapter : RecyclerView.Adapter<ShowViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ShowViewHolder.create(parent, onShowClicked, onFavoriteClicked)
+        ShowViewHolder.create(parent, onShowClicked, onFavoriteClicked, onRemoveClicked)
 
     override fun onBindViewHolder(holder: ShowViewHolder, position: Int) {
         holder.bind(shows[position])
