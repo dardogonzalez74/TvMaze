@@ -28,6 +28,7 @@ class EpisodesViewHolder(
     private val binding = EpisodeItemBinding.bind(itemView)
 
     fun bind(episode: Episode) {
+        itemView.setOnClickListener { onClicked?.invoke(episode) }
         binding.seasonCardView.isVisible = episode.number == 1
         binding.seasonSeparatorView.isVisible = episode.number == 1 && episode.season != 1
         binding.seasonTextView.text = itemView.context.getString(R.string.season_number, episode.season)

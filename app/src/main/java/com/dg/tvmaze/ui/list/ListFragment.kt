@@ -33,7 +33,7 @@ class ListFragment : BottomNavigationFragment(R.layout.fragment_list) {
 
     private fun setupAdapter() {
         makeVisible(binding.loadingLinearLayout)
-        adapter.setOnShowClickedListener { showDetails(it) }
+        adapter.onShowClicked = ::showDetails
         binding.retryTextView.setOnClickListener { adapter.retry() }
 
         binding.showsRecyclerView.adapter =

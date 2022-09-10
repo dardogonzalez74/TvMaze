@@ -5,6 +5,7 @@ import android.text.Html
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -13,6 +14,8 @@ import com.dg.tvmaze.databinding.FragmentShowDetailsBinding
 import com.dg.tvmaze.entities.Episode
 import com.dg.tvmaze.entities.Show
 import com.dg.tvmaze.ui.adapters.EpisodesAdapter
+import com.dg.tvmaze.ui.episode.EpisodeFragment
+import com.dg.tvmaze.ui.episode.newInstance
 import com.google.android.material.tabs.TabLayout
 import org.koin.android.ext.android.inject
 
@@ -89,16 +92,18 @@ class ShowDetailFragment : Fragment(R.layout.fragment_show_details) {
 
     private fun showEpisodes(episodes: List<Episode>) {
         val adapter = EpisodesAdapter()
+        adapter.onEpisodeClicked = ::showDetails
         adapter.episodes = episodes
         binding.episodesRecyclerView.adapter = adapter
-//        var season = 1
-//        while (true) {
-//            val seasonEpisodes = episodes.filter { it.season == season }
-//            if(seasonEpisodes.isEmpty()) return
-//            val seasonView = SeasonView(requireContext(), season, episodes)
-//            binding.episodesLinearLayout.addView(seasonView.createView())
-//            season += 1
-//        }
+    }
+
+    private fun showDetails(episode: Episode) {
+        val episodeFragment = EpisodeFragment.newInstance(viewModel.show, episode)
+        parentFragmentManager.commit {
+            add(R.id.fragmentContainerView, episodeFragment)
+            setReorderingAllowed(true)
+            addToBackStack(null)
+        }
     }
 }
 

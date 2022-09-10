@@ -7,11 +7,7 @@ import com.dg.tvmaze.entities.Show
 
 class ShowsAdapter : PagingDataAdapter<Show, ShowViewHolder>(COMPARATOR) {
 
-    private var onShowClicked: ((Show) -> Unit)? = null
-
-    fun setOnShowClickedListener(onShowClicked: ((Show) -> Unit)) {
-        this.onShowClicked = onShowClicked
-    }
+    var onShowClicked: ((Show) -> Unit)? = null
 
     companion object {
         val COMPARATOR = object : DiffUtil.ItemCallback<Show>() {
