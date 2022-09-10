@@ -12,7 +12,9 @@ class RetrieveEpisodesUseCase(
 
     suspend fun byShowId(showId: Int): List<Episode> =
         withContext(Dispatchers.Default) {
-            return@withContext episodeRepository.fromNetworkByShowId(showId)
+            episodeRepository.fromCacheByShowId(showId)?.let { return@withContext it }
+            val episodes = episodeRepository.fromNetworkByShowId(showId)
+            episodeRepository.toCache(showId, episodes)
+            return@withContext episodes
         }
-
 }

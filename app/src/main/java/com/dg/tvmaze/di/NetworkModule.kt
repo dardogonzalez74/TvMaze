@@ -1,14 +1,14 @@
 package com.dg.tvmaze.di
 
-import com.dg.tvmaze.network.EpisodesEndpoint
+import com.dg.tvmaze.network.EpisodeEndpoint
 import com.dg.tvmaze.network.RetrofitProvider
-import com.dg.tvmaze.network.ShowsEndpoint
+import com.dg.tvmaze.network.ShowEndpoint
 import org.koin.dsl.module
 import retrofit2.Retrofit
 
 val networkModule = module {
     single { RetrofitProvider().provide() }
 
-    single { get<Retrofit>().create(ShowsEndpoint::class.java) }
-    single { get<Retrofit>().create(EpisodesEndpoint::class.java) }
+    single { get<Retrofit>().create(ShowEndpoint::class.java) }
+    single { get<Retrofit>().create(EpisodeEndpoint::class.java) }
 }

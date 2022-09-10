@@ -6,7 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface ShowsEndpoint {
+interface ShowEndpoint {
 
     @GET("shows/{id}")
     suspend fun getById(@Path("id") id: Int): Response<ShowEndpointModel>

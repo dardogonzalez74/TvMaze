@@ -6,5 +6,5 @@ import org.koin.dsl.module
 
 val repositoriesModule = module {
     single { ShowRepository(showsEndpoint = get()) }
-    single { EpisodeRepository(episodesEndpoint = get()) }
+    single { EpisodeRepository(episodesEndpoint = get(), episodeCache = get()) }
 }
