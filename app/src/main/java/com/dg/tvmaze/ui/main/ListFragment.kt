@@ -9,7 +9,7 @@ import androidx.paging.LoadState
 import com.dg.tvmaze.R
 import com.dg.tvmaze.databinding.FragmentListBinding
 import com.dg.tvmaze.entities.Show
-import com.dg.tvmaze.ui.adapters.ShowsAdapter
+import com.dg.tvmaze.ui.adapters.ShowsPagingAdapter
 import com.dg.tvmaze.ui.adapters.ShowsLoadStateAdapter
 import com.dg.tvmaze.ui.series.ShowDetailFragment
 import com.dg.tvmaze.ui.series.newInstance
@@ -22,7 +22,7 @@ class ListFragment : BottomNavigationFragment(R.layout.fragment_list) {
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
     private val viewModel by sharedViewModel<MainViewModel>()
-    private val adapter by lazy { ShowsAdapter() }
+    private val adapter by lazy { ShowsPagingAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

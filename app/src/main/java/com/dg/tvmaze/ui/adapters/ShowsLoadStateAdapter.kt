@@ -5,7 +5,7 @@ import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 
 class ShowsLoadStateAdapter(
-    private val adapter: ShowsAdapter
+    private val adapter: ShowsPagingAdapter
 ) : LoadStateAdapter<ShowsLoadStateViewHolder>() {
 
     override fun onBindViewHolder(holder: ShowsLoadStateViewHolder, loadState: LoadState) {
