@@ -31,11 +31,16 @@ class ShowsAdapter : RecyclerView.Adapter<ShowViewHolder>() {
 
     private fun processFavorites() {
         onFavoriteClicked?: return
-        val oldAll = shows.mapIndexed { index, show -> Triple(index, show.id, show.favorite)  }
-        val oldFavorites = oldAll.filter { it.third }
-        val oldNotFavorites = oldAll.filterNot { it.third }
+        val oldFavorites = shows
+            .mapIndexed { index, show -> if(show.favorite) Pair(index, show.id) else null }
+            .filterNotNull()
+        val oldNotFavorites = shows
+            .mapIndexed { index, show -> if(!show.favorite) Pair(index, show.id) else null }
+            .filterNotNull()
+
         val removed = oldFavorites.filter { old -> favorites.none { fav -> fav.id == old.second } }
         val added = oldNotFavorites.filter { old -> favorites.any { fav -> fav.id == old.second } }
+
         removed.forEach {
             shows[it.first].favorite = false
             notifyItemChanged(it.first)

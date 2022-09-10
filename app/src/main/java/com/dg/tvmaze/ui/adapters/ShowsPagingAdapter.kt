@@ -16,11 +16,16 @@ class ShowsPagingAdapter : PagingDataAdapter<Show, ShowViewHolder>(COMPARATOR) {
         }
 
     private fun processFavorites() {
-        val oldAll = snapshot().items.mapIndexed { index, show -> Triple(index, show.id, show.favorite)  }
-        val oldFavorites = oldAll.filter { it.third }
-        val oldNotFavorites = oldAll.filterNot { it.third }
+        val oldFavorites = snapshot().items
+            .mapIndexed { index, show -> if(show.favorite) Pair(index, show.id) else null }
+            .filterNotNull()
+        val oldNotFavorites = snapshot().items
+            .mapIndexed { index, show -> if(!show.favorite) Pair(index, show.id) else null }
+            .filterNotNull()
+
         val removed = oldFavorites.filter { old -> favorites.none { fav -> fav.id == old.second } }
         val added = oldNotFavorites.filter { old -> favorites.any { fav -> fav.id == old.second } }
+
         removed.forEach {
             getItem(it.first)?.favorite = false
             notifyItemChanged(it.first)
