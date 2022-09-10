@@ -11,13 +11,13 @@ class EpisodeRepository(
     private val episodeCache: EpisodeCache
 ) {
 
-    suspend fun fromNetworkByShowId(showId: Int): List<Episode> =
+    suspend fun fromNetworkGetByShowId(showId: Int): List<Episode> =
         episodeEndpoint.getByShowId(showId).parse().map { it.toAppModel() }
 
-    fun fromCacheByShowId(showId: Int): List<Episode> ?=
+    fun fromCacheGetByShowId(showId: Int): List<Episode> ?=
         episodeCache.getByShowId(showId)
 
-    fun toCache(showId: Int, episode: List<Episode>) {
+    fun toCacheSave(showId: Int, episode: List<Episode>) {
         episodeCache.putByShowId(showId, episode)
     }
 

@@ -19,7 +19,7 @@ class RetrieveShowsPagedUseCase(
         override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Show> {
             val pageNumber = params.key ?: 0
             return try {
-                val response = showRepository.fromNetworkByPage(pageNumber)
+                val response = showRepository.fromNetworkGetByPage(pageNumber)
                 LoadResult.Page(
                     data = response,
                     prevKey = null,

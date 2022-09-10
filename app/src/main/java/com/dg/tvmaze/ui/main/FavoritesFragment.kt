@@ -32,13 +32,13 @@ class FavoritesFragment : BottomNavigationFragment(R.layout.fragment_favorites) 
     private fun setListeners() {
         viewModel.favoritesLiveData.observe(viewLifecycleOwner) {
             adapter.shows = it
-            binding.favortesRecyclerView.isVisible = it.isNotEmpty()
+            binding.favoritesRecyclerView.isVisible = it.isNotEmpty()
             binding.emptyLinearLayout.isVisible = it.isEmpty()
         }
     }
 
     private fun initView() {
-        binding.favortesRecyclerView.adapter = adapter
+        binding.favoritesRecyclerView.adapter = adapter
     }
 
 

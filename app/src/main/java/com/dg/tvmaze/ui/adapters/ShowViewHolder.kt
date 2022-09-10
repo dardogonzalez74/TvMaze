@@ -36,7 +36,9 @@ class ShowViewHolder(
                 itemView.setOnClickListener { onClicked?.invoke(show) }
                 binding.favoriteImageView.setOnClickListener { onFavorited?.invoke(show) }
                 binding.titleTextView.text = it.name
-                binding.summaryTextView.text = Html.fromHtml(it.summary,Html.FROM_HTML_MODE_COMPACT)
+                it.summary?.let { summary ->
+                    binding.summaryTextView.text = Html.fromHtml(summary, Html.FROM_HTML_MODE_COMPACT)
+                }
                 binding.propertyOfTextView.text = it.propertyOf
                 if(it.favorite) {
                     binding.favoriteImageView.setImageResource(R.drawable.ic_favorite)

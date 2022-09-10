@@ -27,5 +27,7 @@
     <string name="season_number_title">Season number</string>
     <string name="no_favorites">You have no favorites</string>
     <string name="no_favorites_info">When you set a series as favorite, it will appear here</string>
+    <string name="search_shows_hint">Search by name (3 letters min.)</string>
+    <string name="search_error">An error occurred while searching</string>
 
 </resources>

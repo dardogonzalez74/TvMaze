@@ -1,9 +1,7 @@
 package com.dg.tvmaze.usecases
 
 import com.dg.tvmaze.entities.Episode
-import com.dg.tvmaze.entities.Show
 import com.dg.tvmaze.repositories.EpisodeRepository
-import com.dg.tvmaze.repositories.ShowRepository
 import kotlinx.coroutines.*
 
 class RetrieveEpisodesUseCase(
@@ -12,9 +10,9 @@ class RetrieveEpisodesUseCase(
 
     suspend fun byShowId(showId: Int): List<Episode> =
         withContext(Dispatchers.Default) {
-            episodeRepository.fromCacheByShowId(showId)?.let { return@withContext it }
-            val episodes = episodeRepository.fromNetworkByShowId(showId)
-            episodeRepository.toCache(showId, episodes)
+            episodeRepository.fromCacheGetByShowId(showId)?.let { return@withContext it }
+            val episodes = episodeRepository.fromNetworkGetByShowId(showId)
+            episodeRepository.toCacheSave(showId, episodes)
             return@withContext episodes
         }
 }

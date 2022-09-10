@@ -19,6 +19,7 @@
     <color name="gray_500">#FF212121</color>
     <color name="gray_700">#FF101010</color>
 
+    <color name="search_background">#FFE0E0E0</color>
     <color name="views_background">#FFE4E4E4</color>
     <color name="cards_background">#FFD4D4D4</color>
 

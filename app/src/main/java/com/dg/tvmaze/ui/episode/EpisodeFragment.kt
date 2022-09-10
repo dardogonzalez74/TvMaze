@@ -50,7 +50,9 @@ class EpisodeFragment : Fragment(R.layout.fragment_episode) {
     private fun showDetails() {
         binding.showNameTextView.text = show.name
         binding.episodeNameTextView.text = episode.name
-        binding.summaryTextView.text = Html.fromHtml(episode.summary, Html.FROM_HTML_MODE_COMPACT)
+        episode.summary?.let { summary ->
+            binding.summaryTextView.text = Html.fromHtml(summary, Html.FROM_HTML_MODE_COMPACT)
+        }
         binding.episodeNumberTextView.text = "${episode.number}"
         binding.seasonNumberTextView.text = "${episode.season}"
 

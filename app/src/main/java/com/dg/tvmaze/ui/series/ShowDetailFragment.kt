@@ -66,7 +66,9 @@ class ShowDetailFragment : Fragment(R.layout.fragment_show_details) {
     private fun showDetails() {
         val show = viewModel.show
         binding.nameTextView.text = show.name
-        binding.summaryTextView.text = Html.fromHtml(show.summary, Html.FROM_HTML_MODE_COMPACT)
+        show.summary?.let { summary ->
+            binding.summaryTextView.text = Html.fromHtml(summary, Html.FROM_HTML_MODE_COMPACT)
+        }
         binding.genreTextView.text = show.genres?: unknown
         binding.languageTextView.text = show.language?: unknown
         binding.ratingTextView.text = "${show.rating?: unknown}"
