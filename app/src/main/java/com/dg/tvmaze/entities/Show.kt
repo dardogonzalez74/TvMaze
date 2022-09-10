@@ -1,11 +1,14 @@
 package com.dg.tvmaze.entities
 
 import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
+@Entity(tableName = "shows")
 @Parcelize
 data class Show(
-    val id: Int,
+    @PrimaryKey val id: Int,
     val name: String,
     val thumbnail: String? = null,
     val image: String? = null,

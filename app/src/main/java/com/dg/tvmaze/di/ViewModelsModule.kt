@@ -10,6 +10,8 @@ val viewModelsModule = module {
 
     viewModel {
         MainViewModel(
+            retrieveFavoritesUC = get(),
+            updateFavoritesUC = get(),
             retrieveShowsPagedUC = get(),
             retrieveShowsBySearchUC = get()
         )

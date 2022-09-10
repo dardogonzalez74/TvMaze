@@ -11,8 +11,10 @@ import com.dg.tvmaze.entities.Episode
 import com.dg.tvmaze.entities.Show
 import com.dg.tvmaze.extensions.asLiveData
 import com.dg.tvmaze.extensions.wrap
+import com.dg.tvmaze.usecases.RetrieveFavoritesUseCase
 import com.dg.tvmaze.usecases.RetrieveShowsBySearchUseCase
 import com.dg.tvmaze.usecases.RetrieveShowsPagedUseCase
+import com.dg.tvmaze.usecases.UpdateFavoritesUseCase
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -20,6 +22,8 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
 class MainViewModel(
+    private val retrieveFavoritesUC: RetrieveFavoritesUseCase,
+    private val updateFavoritesUC: UpdateFavoritesUseCase,
     private val retrieveShowsPagedUC: RetrieveShowsPagedUseCase,
     private val retrieveShowsBySearchUC: RetrieveShowsBySearchUseCase
 ): ViewModel() {
@@ -35,8 +39,14 @@ class MainViewModel(
 
     fun toggleFavorite(show: Show) {
         favorites.find { it.id == show.id }
-            ?.run { favorites.remove(show) }
-            ?:run { favorites.add(show)}
+            ?.run {
+                favorites.remove(show)
+                updateFavoritesUC.remove(show)
+            }
+            ?:run {
+                favorites.add(show)
+                updateFavoritesUC.add(show)
+            }
         _favoritesLiveData.value = favorites
     }
 

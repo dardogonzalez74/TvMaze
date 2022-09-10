@@ -15,6 +15,7 @@ class TvMazeApplication : MultiDexApplication() {
             androidLogger()
             androidContext(this@TvMazeApplication)
             modules(
+                databaseModule,
                 cachesModule,
                 networkModule,
                 repositoriesModule,
