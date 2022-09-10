@@ -3,11 +3,14 @@ package com.dg.tvmaze.ui.main
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.fragment.app.commit
 import com.dg.tvmaze.R
 import com.dg.tvmaze.databinding.FragmentFavoritesBinding
 import com.dg.tvmaze.entities.Show
 import com.dg.tvmaze.ui.adapters.ShowsAdapter
 import com.dg.tvmaze.ui.adapters.ShowsPagingAdapter
+import com.dg.tvmaze.ui.series.ShowDetailFragment
+import com.dg.tvmaze.ui.series.newInstance
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class FavoritesFragment : BottomNavigationFragment(R.layout.fragment_favorites) {
@@ -40,7 +43,17 @@ class FavoritesFragment : BottomNavigationFragment(R.layout.fragment_favorites) 
 
     private fun initView() {
         binding.favoritesRecyclerView.adapter = adapter
+        adapter.onShowClicked = ::showDetails
         adapter.onRemoveClicked = ::removeFavorite
+    }
+
+    private fun showDetails(show: Show) {
+        val showDetailFragment = ShowDetailFragment.newInstance(show)
+        childFragmentManager.commit {
+            add(R.id.fragmentContainerView, showDetailFragment)
+            setReorderingAllowed(true)
+            addToBackStack(null)
+        }
     }
 
     private fun removeFavorite(show: Show) {
