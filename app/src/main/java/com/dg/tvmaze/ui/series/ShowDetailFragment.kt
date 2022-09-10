@@ -67,10 +67,10 @@ class ShowDetailFragment : Fragment(R.layout.fragment_show_details) {
         val show = viewModel.show
         binding.nameTextView.text = show.name
         binding.summaryTextView.text = Html.fromHtml(show.summary, Html.FROM_HTML_MODE_COMPACT)
-        binding.genreTextView.text = show.genres?.joinToString(", ")?: unknown
+        binding.genreTextView.text = show.genres?: unknown
         binding.languageTextView.text = show.language?: unknown
         binding.ratingTextView.text = "${show.rating?: unknown}"
-        binding.daysTextView.text = show.days?.joinToString(", ")?: unknown
+        binding.daysTextView.text = show.days?: unknown
         binding.timeTextView.text = show.time?: unknown
         binding.durationTextView.text = getString(R.string.duration_info, show.runtime?: unknown)
         binding.premieredTextView.text = show.premiered?: unknown

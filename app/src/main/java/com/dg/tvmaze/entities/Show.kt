@@ -15,8 +15,8 @@ data class Show(
     val runtime: Int? = null,
     val premiered: String? = null,
     val ended: String? = null,
-    val genres: List<String>? = null,
+    val genres: String? = null,
     val rating: Double? = null,
     val time: String? = null,
-    val days: List<String>? = null
+    val days: String? = null
 ): Parcelable

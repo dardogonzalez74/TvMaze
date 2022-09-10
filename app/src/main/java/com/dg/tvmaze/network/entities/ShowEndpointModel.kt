@@ -50,8 +50,8 @@ fun ShowEndpointModel.toAppModel() = Show(
     runtime = runtime,
     premiered = premiered,
     ended = ended,
-    genres = genres,
+    genres = genres?.let { it.ifEmpty { null } }?.joinToString(", "),
     rating = rating?.average?: rating?.averageRuntime,
     time = schedule?.time?.let { it.ifEmpty { null } },
-    days = schedule?.days?.let { it.ifEmpty { null } }
+    days = schedule?.days?.let { it.ifEmpty { null } }?.joinToString(", ")
 )
