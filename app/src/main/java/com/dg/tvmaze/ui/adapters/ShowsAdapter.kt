@@ -8,6 +8,27 @@ import com.dg.tvmaze.entities.Show
 class ShowsAdapter : PagingDataAdapter<Show, ShowViewHolder>(COMPARATOR) {
 
     var onShowClicked: ((Show) -> Unit)? = null
+    var onFavoriteClicked: ((Show) -> Unit)? = null
+    var favorites: List<Show> = listOf()
+        set(value) {
+            field = value
+            processFavorites()
+        }
+
+    private fun processFavorites() {
+        val oldIndexed = snapshot().items.mapIndexed { index, show -> Pair(index, show)  }
+        val oldIndexedFavorites = oldIndexed.filter { it.second.favorite }
+        val removed = oldIndexedFavorites.filterNot { old -> favorites.map { it.id }.contains(old.second.id) }
+        val added = favorites.filterNot { fav -> oldIndexedFavorites.map { it.second.id }.contains(fav.id) }
+        removed.forEach {
+            it.second.favorite = false
+            notifyItemChanged(it.first)
+        }
+        oldIndexed.filter { added.map { it.id }.contains(it.second.id) }.forEach {
+            it.second.favorite = true
+            notifyItemChanged(it.first)
+        }
+    }
 
     companion object {
         val COMPARATOR = object : DiffUtil.ItemCallback<Show>() {
@@ -26,7 +47,7 @@ class ShowsAdapter : PagingDataAdapter<Show, ShowViewHolder>(COMPARATOR) {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShowViewHolder {
-        return ShowViewHolder.create(parent, onShowClicked)
+        return ShowViewHolder.create(parent, onShowClicked, onFavoriteClicked)
     }
 
 }

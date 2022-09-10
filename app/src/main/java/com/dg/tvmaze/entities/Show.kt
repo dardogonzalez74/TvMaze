@@ -18,5 +18,6 @@ data class Show(
     val genres: String? = null,
     val rating: Double? = null,
     val time: String? = null,
-    val days: String? = null
+    val days: String? = null,
+    var favorite: Boolean = false
 ): Parcelable

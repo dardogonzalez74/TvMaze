@@ -14,9 +14,7 @@ import com.dg.tvmaze.ui.adapters.ShowsLoadStateAdapter
 import com.dg.tvmaze.ui.series.ShowDetailFragment
 import com.dg.tvmaze.ui.series.newInstance
 import kotlinx.coroutines.flow.collectLatest
-import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListFragment : BottomNavigationFragment(R.layout.fragment_list) {
 
@@ -29,19 +27,32 @@ class ListFragment : BottomNavigationFragment(R.layout.fragment_list) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentListBinding.bind(view)
+        setListeners()
         setupAdapter()
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
+
+    private fun setListeners() {
+        viewModel.favoritesLiveData.observe(viewLifecycleOwner) {
+            adapter.favorites = it
+        }
     }
 
     private fun setupAdapter() {
         makeVisible(binding.loadingLinearLayout)
         adapter.onShowClicked = ::showDetails
+        adapter.onFavoriteClicked = ::toggleFavorite
         binding.retryTextView.setOnClickListener { adapter.retry() }
 
         binding.showsRecyclerView.adapter =
             adapter.withLoadStateFooter(ShowsLoadStateAdapter(adapter))
 
         lifecycleScope.launchWhenCreated {
-            viewModel.shows.collectLatest { adapter.submitData(it) }
+            viewModel.showsFlow.collectLatest { adapter.submitData(it) }
         }
 
         adapter.addLoadStateListener { loadState ->
@@ -51,6 +62,10 @@ class ListFragment : BottomNavigationFragment(R.layout.fragment_list) {
                 is LoadState.Error -> makeVisible(binding.errorLinearLayout)
             }
         }
+    }
+
+    private fun toggleFavorite(show: Show) {
+        viewModel.toggleFavorite(show)
     }
 
     private fun showDetails(show: Show) {
@@ -68,10 +83,6 @@ class ListFragment : BottomNavigationFragment(R.layout.fragment_list) {
         binding.showsRecyclerView.isVisible = view == binding.showsRecyclerView
     }
 
-    override fun onDestroyView() {
-        _binding = null
-        super.onDestroyView()
-    }
 }
 
 fun ListFragment.Companion.newInstance() = ListFragment()

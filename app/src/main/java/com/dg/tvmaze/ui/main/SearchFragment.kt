@@ -2,12 +2,11 @@ package com.dg.tvmaze.ui.main
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.commit
+import androidx.lifecycle.lifecycleScope
 import com.dg.tvmaze.R
 import com.dg.tvmaze.databinding.FragmentSearchBinding
-import com.dg.tvmaze.ui.main.BottomNavigationFragment
-import com.dg.tvmaze.ui.series.ShowDetailFragment
-import com.dg.tvmaze.ui.series.newInstance
+import kotlinx.coroutines.flow.collectLatest
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 
 class SearchFragment : BottomNavigationFragment(R.layout.fragment_search) {
@@ -15,18 +14,14 @@ class SearchFragment : BottomNavigationFragment(R.layout.fragment_search) {
     companion object;
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
+    private val viewModel by sharedViewModel<MainViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentSearchBinding.bind(view)
 
-        binding.goToSeriesButton.setOnClickListener {
-//            val showDetailFragment = ShowDetailFragment.newInstance("From Search")
-//            childFragmentManager.commit {
-//                add(R.id.fragmentContainerView, showDetailFragment)
-//                setReorderingAllowed(true)
-//                addToBackStack(null)
-//            }
+        lifecycleScope.launchWhenCreated {
+            viewModel.showsFlow.collectLatest {  }
         }
     }
 

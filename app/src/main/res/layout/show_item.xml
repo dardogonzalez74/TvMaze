@@ -42,10 +42,19 @@
                 android:ellipsize="end"
                 android:textStyle="bold"
                 android:textColor="@color/gray_500"
-                card_view:layout_constraintStart_toEndOf="@id/thumbnailImageView"
+                app:layout_constraintStart_toEndOf="@id/thumbnailImageView"
                 app:layout_constraintTop_toTopOf="@id/thumbnailImageView"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/favoriteImageView"
                 tools:text="Name" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/favoriteImageView"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_favorite_border" />
 
             <TextView
                 android:id="@+id/summaryTextView"
