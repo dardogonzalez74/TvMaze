@@ -69,7 +69,6 @@ class MainActivity : AppCompatActivity() {
     override fun onBackPressed() {
         when {
             activeFragment.handleUserBackPressed() -> return
-            activeFragment != listFragment -> binding.bottomNavigationView.selectedItemId = R.id.action_list
             else -> super.onBackPressed()
         }
     }
