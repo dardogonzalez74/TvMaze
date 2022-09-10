@@ -9,8 +9,8 @@ import com.dg.tvmaze.R
 import com.dg.tvmaze.databinding.FragmentSearchBinding
 import com.dg.tvmaze.entities.Show
 import com.dg.tvmaze.ui.adapters.ShowsAdapter
-import com.dg.tvmaze.ui.series.ShowDetailFragment
-import com.dg.tvmaze.ui.series.newInstance
+import com.dg.tvmaze.ui.shows.ShowDetailFragment
+import com.dg.tvmaze.ui.shows.newInstance
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 

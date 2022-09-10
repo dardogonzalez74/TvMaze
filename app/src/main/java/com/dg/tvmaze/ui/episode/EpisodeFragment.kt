@@ -59,15 +59,11 @@ class EpisodeFragment : Fragment(R.layout.fragment_episode) {
         episode.image
             ?.let {
                 Glide.with(requireContext())
-                    //TODO just for testing, remove this
-                    .setDefaultRequestOptions(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
                     .load(it)
                     .into(binding.coverImageView)
             }
             ?:run { binding.coverImageView.isVisible = false }
-
     }
-
 }
 
 

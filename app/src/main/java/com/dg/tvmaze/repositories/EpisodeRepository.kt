@@ -17,7 +17,7 @@ class EpisodeRepository(
     fun fromCacheGetByShowId(showId: Int): List<Episode> ?=
         episodeCache.getByShowId(showId)
 
-    fun toCacheSave(showId: Int, episode: List<Episode>) {
+    fun fromCacheSave(showId: Int, episode: List<Episode>) {
         episodeCache.putByShowId(showId, episode)
     }
 

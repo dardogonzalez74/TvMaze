@@ -11,8 +11,8 @@ import com.dg.tvmaze.databinding.FragmentListBinding
 import com.dg.tvmaze.entities.Show
 import com.dg.tvmaze.ui.adapters.ShowsPagingAdapter
 import com.dg.tvmaze.ui.adapters.ShowsLoadStateAdapter
-import com.dg.tvmaze.ui.series.ShowDetailFragment
-import com.dg.tvmaze.ui.series.newInstance
+import com.dg.tvmaze.ui.shows.ShowDetailFragment
+import com.dg.tvmaze.ui.shows.newInstance
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 

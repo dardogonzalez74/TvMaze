@@ -1,4 +1,4 @@
-package com.dg.tvmaze.ui.series
+package com.dg.tvmaze.ui.shows
 
 import android.annotation.SuppressLint
 import androidx.lifecycle.MutableLiveData

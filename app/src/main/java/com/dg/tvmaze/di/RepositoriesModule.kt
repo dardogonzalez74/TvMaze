@@ -5,6 +5,6 @@ import com.dg.tvmaze.repositories.ShowRepository
 import org.koin.dsl.module
 
 val repositoriesModule = module {
-    single { ShowRepository(showEndpoint = get(), searchEndpoint = get()) }
+    single { ShowRepository(showDao = get(), showEndpoint = get(), searchEndpoint = get()) }
     single { EpisodeRepository(episodeEndpoint = get(), episodeCache = get()) }
 }

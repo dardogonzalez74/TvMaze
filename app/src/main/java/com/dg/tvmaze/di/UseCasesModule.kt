@@ -5,8 +5,8 @@ import org.koin.dsl.module
 
 val useCasesModule = module {
     factory { RetrieveEpisodesUseCase(episodeRepository = get()) }
-    factory { RetrieveShowsPagedUseCase(showRepository = get()) }
+    factory { RetrieveShowsPagedUseCase(showRepository = get(), retrieveFavoritesUseCase = get()) }
     factory { RetrieveShowsBySearchUseCase(showRepository = get()) }
-    factory { RetrieveFavoritesUseCase() }
-    factory { UpdateFavoritesUseCase() }
+    factory { RetrieveFavoritesUseCase(showRepository = get()) }
+    factory { UpdateFavoritesUseCase(showRepository = get()) }
 }

@@ -1,4 +1,4 @@
-package com.dg.tvmaze.ui.series
+package com.dg.tvmaze.ui.shows
 
 import android.os.Bundle
 import android.text.Html
@@ -79,8 +79,6 @@ class ShowDetailFragment : Fragment(R.layout.fragment_show_details) {
         binding.endedTextView.text = show.ended?: "-"
 
         Glide.with(requireContext())
-            //TODO just for testing, remove this
-            .setDefaultRequestOptions(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
             .load(show.image)
             .into(binding.coverImageView)
     }

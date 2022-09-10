@@ -12,7 +12,7 @@ class RetrieveEpisodesUseCase(
         withContext(Dispatchers.Default) {
             episodeRepository.fromCacheGetByShowId(showId)?.let { return@withContext it }
             val episodes = episodeRepository.fromNetworkGetByShowId(showId)
-            episodeRepository.toCacheSave(showId, episodes)
+            episodeRepository.fromCacheSave(showId, episodes)
             return@withContext episodes
         }
 }

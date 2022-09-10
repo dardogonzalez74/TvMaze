@@ -55,10 +55,6 @@ class ShowViewHolder(
                 }
                 binding.propertyOfTextView.text = it.propertyOf
                 Glide.with(itemView.context)
-
-                    //TODO just for testing, remove this
-                    .setDefaultRequestOptions(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
-
                     .load(it.thumbnail)
                     .placeholder(R.drawable.ic_image_loading)
                     .error(R.drawable.ic_image_error)

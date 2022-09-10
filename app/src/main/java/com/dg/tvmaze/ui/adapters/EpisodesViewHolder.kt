@@ -35,8 +35,6 @@ class EpisodesViewHolder(
         binding.episodeTextView.text = itemView.context.getString(R.string.episode_number, episode.number)
         binding.nameTextView.text = episode.name
         Glide.with(itemView.context)
-            //TODO just for testing, remove this
-            .setDefaultRequestOptions(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
             .load(episode.thumbnail)
             .placeholder(R.drawable.ic_image_loading)
             .error(R.drawable.ic_image_error)

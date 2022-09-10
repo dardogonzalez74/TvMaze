@@ -1,7 +1,7 @@
 package com.dg.tvmaze.di
 
 import com.dg.tvmaze.ui.main.MainViewModel
-import com.dg.tvmaze.ui.series.ShowDetailsViewModel
+import com.dg.tvmaze.ui.shows.ShowDetailsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

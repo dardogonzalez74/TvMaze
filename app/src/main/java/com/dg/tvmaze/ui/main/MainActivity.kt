@@ -12,14 +12,11 @@ import com.dg.tvmaze.databinding.ActivityMainBinding
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-fun log(message: String) = Log.d(BuildConfig.APPLICATION_ID, message)
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var listFragment: BottomNavigationFragment
     private lateinit var searchFragment: BottomNavigationFragment
     private lateinit var favoritesFragment: BottomNavigationFragment
-//    private val viewModel by viewModel<MainViewModel>()
 
     private lateinit var activeFragment: BottomNavigationFragment
     private lateinit var binding: ActivityMainBinding

@@ -7,19 +7,23 @@ import com.dg.tvmaze.repositories.ShowRepository
 import org.koin.core.component.KoinComponent
 
 class RetrieveShowsPagedUseCase(
-    private val showRepository: ShowRepository
+    private val showRepository: ShowRepository,
+    private val retrieveFavoritesUC: RetrieveFavoritesUseCase
 ) {
 
-    fun getDataSource() = ShowsPagingDataSource(showRepository)
+    fun getDataSource() = ShowsPagingDataSource(showRepository, retrieveFavoritesUC)
 
-
-
-    class ShowsPagingDataSource(private val showRepository: ShowRepository) : PagingSource<Int, Show>(), KoinComponent {
+    class ShowsPagingDataSource(
+        private val showRepository: ShowRepository,
+        private val retrieveFavoritesUC: RetrieveFavoritesUseCase
+    ) : PagingSource<Int, Show>(), KoinComponent {
 
         override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Show> {
             val pageNumber = params.key ?: 0
             return try {
                 val response = showRepository.fromNetworkGetByPage(pageNumber)
+                val favorites = retrieveFavoritesUC.getAll()
+                response.forEach { it.favorite = favorites.any { fav -> fav.id == it.id } }
                 LoadResult.Page(
                     data = response,
                     prevKey = null,

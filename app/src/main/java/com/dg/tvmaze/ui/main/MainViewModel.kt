@@ -36,23 +36,32 @@ class MainViewModel(
     private val _searchLiveData = MutableLiveData<Result<List<Show>>>()
     val searchLiveData = _searchLiveData.asLiveData()
 
+    init {
+        viewModelScope.launch {
+            wrap { retrieveFavoritesUC.getAll() }.getOrNull()?.let {
+                favorites.addAll(it)
+                _favoritesLiveData.value = favorites
+            }
+        }
+    }
 
     fun toggleFavorite(show: Show) {
         favorites.find { it.id == show.id }
-            ?.run {
-                favorites.remove(show)
+            ?.let {
+                favorites.remove(it)
                 updateFavoritesUC.remove(show)
             }
             ?:run {
-                favorites.add(show)
+                favorites.add(show.copy(favorite = true))
                 updateFavoritesUC.add(show)
             }
         _favoritesLiveData.value = favorites
     }
 
     fun removeFavorite(show: Show) {
-        favorites.find { it.id == show.id }?.run {
-            favorites.remove(show)
+        favorites.find { it.id == show.id }?.let {
+            favorites.remove(it)
+            updateFavoritesUC.remove(it)
             _favoritesLiveData.value = favorites
         }
     }
@@ -70,9 +79,9 @@ class MainViewModel(
         if(query.length < 3) return
         searchShowsJob?.cancel()
         searchShowsJob = viewModelScope.launch {
-            // Adding a delay of 1 second just to not start
-            // a lot of queries when the user is typing fast
-            delay(1_000)
+            // Adding a delay just to not start a lot of
+            // queries when the user is typing fast
+            delay(500)
             if(!isActive) return@launch
             val shows = wrap { retrieveShowsBySearchUC.search(query) }
             if(isActive) _searchLiveData.value = shows
