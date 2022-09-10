@@ -4,15 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.ActionBar
+import androidx.lifecycle.lifecycleScope
 import com.dg.tvmaze.BuildConfig
 import com.dg.tvmaze.R
 import com.dg.tvmaze.databinding.ActivityMainBinding
-import com.dg.tvmaze.ui.favorites.FavoritesFragment
-import com.dg.tvmaze.ui.favorites.newInstance
-import com.dg.tvmaze.ui.list.ListFragment
-import com.dg.tvmaze.ui.list.newInstance
-import com.dg.tvmaze.ui.search.SearchFragment
-import com.dg.tvmaze.ui.search.newInstance
+import kotlinx.coroutines.flow.collectLatest
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 fun log(message: String) = Log.d(BuildConfig.APPLICATION_ID, message)
 
@@ -21,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private val listFragment: BottomNavigationFragment by lazy { ListFragment.newInstance() }
     private val searchFragment: BottomNavigationFragment by lazy { SearchFragment.newInstance() }
     private val favoritesFragment: BottomNavigationFragment by lazy { FavoritesFragment.newInstance() }
+    private val viewModel by viewModel<MainViewModel>()
 
     private var activeFragment: BottomNavigationFragment = listFragment
     private lateinit var binding: ActivityMainBinding
@@ -53,6 +51,10 @@ class MainActivity : AppCompatActivity() {
             true
         }
         binding.bottomNavigationView.selectedItemId = R.id.action_list
+
+        lifecycleScope.launchWhenCreated {
+            viewModel.shows.collectLatest { log("receiving page") }
+        }
     }
 
     override fun onBackPressed() {

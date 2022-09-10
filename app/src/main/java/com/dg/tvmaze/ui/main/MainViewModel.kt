@@ -1,6 +1,5 @@
-package com.dg.tvmaze.ui.list
+package com.dg.tvmaze.ui.main
 
-import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
@@ -11,10 +10,13 @@ import com.dg.tvmaze.entities.Show
 import com.dg.tvmaze.usecases.RetrieveShowsPagedUseCase
 import kotlinx.coroutines.flow.Flow
 
-@SuppressLint("NullSafeMutableLiveData") // Lint is not processing well <T:Any> from wrap
-class ListViewModel(
+class MainViewModel(
     private val retrieveShowsPagedUC: RetrieveShowsPagedUseCase
 ): ViewModel() {
+
+    init {
+        log("init MainViewModel")
+    }
 
     val shows: Flow<PagingData<Show>> =
         Pager(

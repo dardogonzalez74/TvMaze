@@ -1,4 +1,4 @@
-package com.dg.tvmaze.ui.list
+package com.dg.tvmaze.ui.main
 
 import android.os.Bundle
 import android.view.View
@@ -11,18 +11,19 @@ import com.dg.tvmaze.databinding.FragmentListBinding
 import com.dg.tvmaze.entities.Show
 import com.dg.tvmaze.ui.adapters.ShowsAdapter
 import com.dg.tvmaze.ui.adapters.ShowsLoadStateAdapter
-import com.dg.tvmaze.ui.main.BottomNavigationFragment
 import com.dg.tvmaze.ui.series.ShowDetailFragment
 import com.dg.tvmaze.ui.series.newInstance
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ListFragment : BottomNavigationFragment(R.layout.fragment_list) {
 
     companion object;
     private var _binding: FragmentListBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: ListViewModel by inject()
+    private val viewModel by sharedViewModel<MainViewModel>()
     private val adapter by lazy { ShowsAdapter() }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
