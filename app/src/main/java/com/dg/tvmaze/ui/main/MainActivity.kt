@@ -3,6 +3,7 @@ package com.dg.tvmaze.ui.main
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.ActionBar
 import com.dg.tvmaze.BuildConfig
 import com.dg.tvmaze.R
 import com.dg.tvmaze.databinding.ActivityMainBinding
@@ -27,6 +28,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        supportActionBar?.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM;
+        supportActionBar?.setDisplayShowCustomEnabled(true);
+        supportActionBar?.setCustomView(R.layout.custom_action_bar);
         setContentView(binding.root)
         setupBottomNavigationView()
     }

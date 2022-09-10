@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable/rounded_corner.xml" value="0.114" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2703125" />
         <entry key="app/src/main/res/layout/activity_main_custom_bar.xml" value="0.2552083333333333" />
+        <entry key="app/src/main/res/layout/custom_action_bar.xml" value="0.2552083333333333" />
         <entry key="app/src/main/res/layout/episode_item.xml" value="0.335" />
         <entry key="app/src/main/res/layout/episode_view.xml" value="0.10520833333333333" />
         <entry key="app/src/main/res/layout/fragment_episode.xml" value="0.2552083333333333" />
