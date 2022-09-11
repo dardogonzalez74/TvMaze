@@ -26,7 +26,7 @@ class UpdateFavoritesUseCase(
             // but because the only use that we give to it
             // is for storing the favorites shows we simplify
             // the logic by removing them from the table
-            showRepository.fromDbInsert(show.copy(favorite = true))
+            showRepository.fromDbDelete(show.copy(favorite = true))
         }
     }
 }

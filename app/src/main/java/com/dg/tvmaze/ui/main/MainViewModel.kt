@@ -7,7 +7,6 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.dg.tvmaze.entities.Episode
 import com.dg.tvmaze.entities.Show
 import com.dg.tvmaze.extensions.asLiveData
 import com.dg.tvmaze.extensions.wrap

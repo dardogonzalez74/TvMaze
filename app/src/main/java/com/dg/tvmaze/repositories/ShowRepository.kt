@@ -7,7 +7,6 @@ import com.dg.tvmaze.network.SearchEndpoint
 import com.dg.tvmaze.network.ShowEndpoint
 import com.dg.tvmaze.network.entities.toAppModel
 
-
 class ShowRepository(
     private val showDao: ShowDao,
     private val showEndpoint: ShowEndpoint,

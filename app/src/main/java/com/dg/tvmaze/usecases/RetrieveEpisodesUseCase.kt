@@ -1,14 +1,15 @@
 package com.dg.tvmaze.usecases
 
 import com.dg.tvmaze.entities.Episode
-import com.dg.tvmaze.repositories.EpisodeRepository
-import kotlinx.coroutines.*
+import com.dg.tvmaze.repositories.IEpisodeRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class RetrieveEpisodesUseCase(
-    private val episodeRepository: EpisodeRepository
-) {
+    private val episodeRepository: IEpisodeRepository
+) : IRetrieveEpisodesUseCase {
 
-    suspend fun byShowId(showId: Int): List<Episode> =
+    override suspend fun byShowId(showId: Int): List<Episode> =
         withContext(Dispatchers.Default) {
             episodeRepository.fromCacheGetByShowId(showId)?.let { return@withContext it }
             val episodes = episodeRepository.fromNetworkGetByShowId(showId)

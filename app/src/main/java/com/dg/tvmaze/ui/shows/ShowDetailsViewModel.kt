@@ -8,12 +8,12 @@ import com.dg.tvmaze.entities.Episode
 import com.dg.tvmaze.entities.Show
 import com.dg.tvmaze.extensions.asLiveData
 import com.dg.tvmaze.extensions.wrap
-import com.dg.tvmaze.usecases.RetrieveEpisodesUseCase
+import com.dg.tvmaze.usecases.IRetrieveEpisodesUseCase
 import kotlinx.coroutines.launch
 
 @SuppressLint("NullSafeMutableLiveData") // Lint is not processing well <T:Any> from wrap
 class ShowDetailsViewModel(
-    private val retrieveEpisodesUseCase: RetrieveEpisodesUseCase
+    private val retrieveEpisodesUseCase: IRetrieveEpisodesUseCase
 ): ViewModel() {
 
     private val _episodes = MutableLiveData<Result<List<Episode>>>()

@@ -1,10 +1,9 @@
 package com.dg.tvmaze.di
 
 import com.dg.tvmaze.cache.EpisodeCache
-import com.dg.tvmaze.repositories.EpisodeRepository
-import com.dg.tvmaze.repositories.ShowRepository
+import com.dg.tvmaze.cache.IEpisodeCache
 import org.koin.dsl.module
 
 val cachesModule = module {
-    single { EpisodeCache() }
+    single<IEpisodeCache> { EpisodeCache() }
 }

@@ -25,16 +25,16 @@ data class ShowEndpointModel(
 
     data class Rating(
         val average: Double? = null,
-        val averageRuntime: Double? = null,
+        val averageRuntime: Double? = null
     )
 
     data class Schedule(
         val time: String? = null,
-        val days: List<String>? = null,
+        val days: List<String>? = null
     )
 
     data class Network(
-        val name: String? = null,
+        val name: String? = null
     )
 }
 

@@ -7,8 +7,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
 import com.dg.tvmaze.R
 import com.dg.tvmaze.databinding.FragmentShowDetailsBinding
 import com.dg.tvmaze.entities.Episode

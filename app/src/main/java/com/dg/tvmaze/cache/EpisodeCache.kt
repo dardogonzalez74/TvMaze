@@ -2,13 +2,13 @@ package com.dg.tvmaze.cache
 
 import com.dg.tvmaze.entities.Episode
 
-class EpisodeCache {
+class EpisodeCache: IEpisodeCache {
 
     private val cache = HashMap<Int, List<Episode>>()
 
-    fun putByShowId(showId: Int, episodes: List<Episode>) {
+    override fun putByShowId(showId: Int, episodes: List<Episode>) {
         cache[showId] = episodes
     }
 
-    fun getByShowId(showId: Int): List<Episode>? = cache[showId]
+    override fun getByShowId(showId: Int): List<Episode>? = cache[showId]
 }
